@@ -45,10 +45,7 @@ import tensorflow as tf
 
 from tensorflow.python.platform import gfile
 
-# update START
-#FLAGS = tf.app.flags.FLAGS
 FLAGS = tf.compat.v1.flags.FLAGS
-# update END
 
 # classify_image_graph_def.pb:
 #   Binary representation of the GraphDef protocol buffer.
@@ -57,16 +54,6 @@ FLAGS = tf.compat.v1.flags.FLAGS
 # imagenet_2012_challenge_label_map_proto.pbtxt:
 #   Text representation of a protocol buffer mapping a label to synset ID.
 
-# update START
-# tf.app.flags.DEFINE_string(
-#     'model_dir', '/tmp/imagenet',
-#     """Path to classify_image_graph_def.pb, """
-#     """imagenet_synset_to_human_label_map.txt, and """
-#     """imagenet_2012_challenge_label_map_proto.pbtxt.""")
-# tf.app.flags.DEFINE_string('image_file', '',
-#                            """Absolute path to image file.""")
-# tf.app.flags.DEFINE_integer('num_top_predictions', 5,
-#                             """Display this many predictions.""")
 tf.compat.v1.flags.DEFINE_string(
     'model_dir', '/tmp/imagenet',
     """Path to classify_image_graph_def.pb, """
@@ -76,7 +63,6 @@ tf.compat.v1.flags.DEFINE_string('image_file', '',
                            """Absolute path to image file.""")
 tf.compat.v1.flags.DEFINE_integer('num_top_predictions', 5,
                             """Display this many predictions.""")
-# update END
 
 # pylint: disable=line-too-long
 DATA_URL = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz'
@@ -153,10 +139,7 @@ def create_graph():
   # Creates graph from saved graph_def.pb.
   with gfile.FastGFile(os.path.join(
       FLAGS.model_dir, 'classify_image_graph_def.pb'), 'rb') as f:
-    # update START
-    #graph_def = tf.GraphDef()
     graph_def = tf.compat.v1.GraphDef()
-    # update END
     graph_def.ParseFromString(f.read())
     _ = tf.import_graph_def(graph_def, name='')
 
@@ -177,10 +160,7 @@ def run_inference_on_image(image):
   # Creates graph from saved GraphDef.
   create_graph()
 
-# update START
-  #with tf.Session() as sess:
   with tf.compat.v1.Session() as sess:
-# update END
     # Some useful tensors:
     # 'softmax:0': A tensor containing the normalized prediction across
     #   1000 labels.
@@ -232,7 +212,4 @@ def main(_):
 
 
 if __name__ == '__main__':
-  # update START
-  #tf.app.run()
   tf.compat.v1.app.run()
-  # update END
