@@ -1,4 +1,0 @@
-この階層に下記のサイトからモデルをコピーまたはcloneする。
-解凍後、名称をmodelsに変更する。
-
-https://github.com/tensorflow/models
