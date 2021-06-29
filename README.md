@@ -5,7 +5,7 @@ TensorFlowなどを使ったサンプルプログラムを記載していきま�
 ImageNetのclassify_image.pyをTF2.0以降に対応したプログラム
 ## 使用方法
 ①このリポジトリのImageNetをclone。  
-②ImageNetに「https://github.com/tensorflow/models」  
+②ImageNetに「https://github.com/tensorflow/models 」  
 からモデルをコピーまたはcloneする。  
 解凍後、名称をmodelsに変更する。
 
